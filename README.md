@@ -1,7 +1,16 @@
 # FOS
 
-FOS is a small 32-bit x86 educational operating system. It builds a bootable
-disk image and runs it in Bochs.
+<h1 align="center">
+<img src="https://i.postimg.cc/BnZmZZ0h/banar-OS.png" alt="Description of image" style="border-radius: 5px;">
+</h1>
+
+FOS is an educational operating system. It is a refactored version of [MIT Operating Systems Lab 6.828.](https://ocw.mit.edu/courses/6-828-operating-system-engineering-fall-2012/), adapted to help students learn operating system concepts through hands-on work.
+
+# What is this project?
+
+This project involves creating a fully functional operating system in C.
+
+The project aims to develop a system that manages memory, schedules processes, and ensures protection for shared resources.
 
 ## Build
 
@@ -11,7 +20,7 @@ From the project root, run:
 make -j2
 ```
 
-If your system does not have `i386-elf-gcc`, build with the host compiler:
+If your system does not have `i386-elf-gcc`, use the host compiler instead:
 
 ```bash
 make GCCPREFIX='' -j2
@@ -19,7 +28,7 @@ make GCCPREFIX='' -j2
 
 ## Run
 
-After the build finishes, start Bochs with:
+After the build finishes, run the system in Bochs:
 
 ```bash
 bochs -q -f .bochsrc
@@ -27,37 +36,8 @@ bochs -q -f .bochsrc
 
 ## Clean
 
-Remove build files with:
+Remove all generated files with:
 
 ```bash
 make clean
 ```
-
-## Requirements
-
-You need `make`, `gcc`, `binutils`, `perl`, and `bochs`.
-
-On Fedora, install:
-
-```bash
-sudo dnf install gcc binutils make perl bochs glibc-devel.i686 libgcc.i686
-```
-
-On Ubuntu, install:
-
-```bash
-sudo apt install build-essential binutils perl bochs gcc-multilib libc6-dev-i386
-```
-
-## Project Layout
-
-- `boot/` bootloader code
-- `kern/` kernel code
-- `lib/` shared support code
-- `user/` user programs and tests
-- `inc/` header files
-
-## Notes
-
-- The project is configured for SDL2 Bochs display in `.bochsrc`.
-- If Bochs cannot open a window, run it from a local graphical desktop.
