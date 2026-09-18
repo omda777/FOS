@@ -53,6 +53,7 @@ struct Command commands[] =
 		{"nomodbuff", "disable modified buffer", command_disable_modified_buffer, 0},
 		{"modbuff", "enable modified buffer", command_enable_modified_buffer, 0},
 		{"modbufflength?", "get modified buffer length", command_get_modified_buffer_length, 0},
+		{"ver","Display the version of FOS", command_version , 0},
 
 		//*****************************//
 		/* COMMANDS WITH ONE ARGUMENT */
@@ -85,6 +86,7 @@ struct Command commands[] =
 		{ "schedMLFQ", "switch the scheduler to MLFQ with given # queues & quantums", command_sch_MLFQ, -1},
 		{"load", "load a single user program to mem with status = NEW", commnad_load_env, -1},
 		{"tst", "run the given test", command_tst, -1},
+		{"add", "add list on numbers",command_add , -1},
 };
 
 //Number of commands = size of the array / size of command structure
@@ -858,4 +860,20 @@ int command_get_modified_buffer_length(int number_of_arguments, char **arguments
 int command_tst(int number_of_arguments, char **arguments)
 {
 	return tst_handler(number_of_arguments, arguments);
+}
+
+int command_version(int number_of_arguments , char **arguments){
+	cprintf("FOS Version 1.0.0\n");
+	return 0;
+}
+
+int command_add(int number_of_arguments , char **arguments){
+	int sum = 0;
+	for(int i = 1 ; i < number_of_arguments ; i++){
+		int num = strtol(arguments[i] ,  NULL  ,0 );
+		sum += num;
+	}
+
+	cprintf("Sumation = %d\n" , sum);
+	return 0;
 }
