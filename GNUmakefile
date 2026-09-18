@@ -64,14 +64,14 @@ endif
 #OBJDUMP	:= $(GCCPREFIX)objdump
 #NM	:= $(GCCPREFIX)nm
 
-CC	:= i386-elf-gcc -m32 -pipe
+CC	:= $(GCCPREFIX)gcc -m32 -pipe
 GCC_LIB := $(shell $(CC) -print-libgcc-file-name)
-AS	:= i386-elf-as --32
-AR	:= i386-elf-ar
-LD	:= i386-elf-ld -m elf_i386
-OBJCOPY	:= i386-elf-objcopy
-OBJDUMP	:= i386-elf-objdump
-NM	:= i386-elf-nm
+AS	:= $(GCCPREFIX)as --32
+AR	:= $(GCCPREFIX)ar
+LD	:= $(GCCPREFIX)ld -m elf_i386
+OBJCOPY	:= $(GCCPREFIX)objcopy
+OBJDUMP	:= $(GCCPREFIX)objdump
+NM	:= $(GCCPREFIX)nm
 
 
 # Note for migration to new build systems, if this doesn't work with 64 compilers, try adding -m32 to NCC flags
@@ -84,7 +84,7 @@ PERL	:= perl
 # -fno-builtin is required to avoid refs to undefined functions in the kernel.
 # Only optimize to -O1 to discourage inlining, which complicates backtraces.
 #CFLAGS	:= $(CFLAGS) $(DEFS) $(LABDEFS) -O -fno-builtin -I$(TOP) -MD -Wall -Wno-format -Wno-unused -Werror -gstabs
-CFLAGS	:= $(CFLAGS) $(DEFS) $(LABDEFS) -fgnu89-inline -O0 -fno-builtin -I$(TOP) -MD -Wall -Wno-format -Wno-unused -Werror -fno-stack-protector -gstabs -ggdb -g3
+CFLAGS	:= $(CFLAGS) $(DEFS) $(LABDEFS) -std=gnu17 -fgnu89-inline -O0 -fno-builtin -fno-pie -fcommon -I$(TOP) -MD -Wall -Wno-format -Wno-unused -fno-stack-protector -ggdb -g3
 
 # Linker flags for FOS user programs
 ULDFLAGS := -T user/user.ld
@@ -151,8 +151,8 @@ all:
 .PRECIOUS: %.o $(OBJDIR)/boot/%.o $(OBJDIR)/kern/%.o \
 	$(OBJDIR)/lib/%.o $(OBJDIR)/fs/%.o $(OBJDIR)/user/%.o
 
-KERN_CFLAGS := $(CFLAGS) -DFOS_KERNEL -gstabs
-USER_CFLAGS := $(CFLAGS) -DFOS_USER -gstabs
+KERN_CFLAGS := $(CFLAGS) -DFOS_KERNEL
+USER_CFLAGS := $(CFLAGS) -DFOS_USER
 
 
 
@@ -219,4 +219,3 @@ always:
 
 .PHONY: all always \
 	handin tarball clean new realclean clean-labsetup distclean grade labsetup
-

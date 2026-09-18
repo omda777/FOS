@@ -1,0 +1,25 @@
+*     Max Envs = 8, Nearest Pow of 2 = 8
+*     check_boot_pgdir() succeeded!
+* 3) USER ENVs...[DONE]
+* 4) PROGRAMMABLE INTERRUPT CONTROLLER:
+*     PIC is initialized
+*     IRQ0 (Clock): is Enabled
+*     IRQ1 (Keyboard): is Enabled
+*     IRQ4 (COM1): is Enabled
+* 5) SCHEDULER & MULTI-TASKING:
+*     RR scheduler with initial clock = 11909
+* 6) ESP to SCHED KERN STACK:
+*     old SP = f0135fd0 - updated SP = efbfffd0
+********************************************************************
+
+Welcome to the FOS kernel command prompt!
+Type 'help' for a list of commands.
+FOS> hello
+Unknown command 'hello'
+FOS> hello how can i help you
+Unknown command 'hello'
+FOS> this is my first fie
+Unknown command 'this'
+FOS> hello
+Unknown command 'hello'
+FOS> ß

@@ -1,1 +1,6 @@
-/bochs.log
+# Build output
+obj/
+
+# Bochs runtime output
+bochs.out
+bochs.log

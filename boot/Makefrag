@@ -27,6 +27,6 @@ $(OBJDIR)/boot/boot: $(BOOT_OBJS)
 	@echo + ld -m elf_i386 boot/boot
 	$(V)$(LD) --oformat=elf32-i386 -melf_i386 -N -e start -Ttext 0x7C00 -o $@.out $^
 	$(V)$(OBJDUMP) -S $@.out >$@.asm
-	$(V)$(OBJCOPY) -S -R ".eh_frame" -O binary $@.out $@
+	# Modern toolchains add allocatable metadata sections; the boot sector needs only executable code.
+	$(V)$(OBJCOPY) --dump-section .text=$@ $@.out
 	$(V)perl boot/sign.pl $(OBJDIR)/boot/boot
-

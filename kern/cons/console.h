@@ -39,6 +39,6 @@ struct ksemaphore KBDsem;				//semaphore to manage KBD interrupts
 
 void kbd_intr(void); // irq 1
 void serial_intr(void); // irq 4
-void keyboard_interrupt_handler();
+void keyboard_interrupt_handler(struct Trapframe *tf);
 
 #endif /* _CONSOLE_H_ */

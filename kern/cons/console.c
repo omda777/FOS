@@ -521,8 +521,9 @@ iscons(int fdnum)
 }
 
 /*Keyboard Interrupt Service Routine */
-void keyboard_interrupt_handler()
+void keyboard_interrupt_handler(struct Trapframe *tf)
 {
+	(void)tf;
 	//	char scanCode = inb(0x60) & 0x7F; //What key is pressed
 	//	char press = inb(0x60) & 0x80; //Press down, or released
 	//
